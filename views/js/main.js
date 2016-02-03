@@ -429,7 +429,17 @@ var resizePizzas = function(size) {
 
     // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
+
+
+    var newSize = sizeSwitcher(size);
+    var dx = (newSize - oldSize) * windowWidth;
+
+    return dx;
+  }
+
+  // Iterates through pizza elements on the page and changes their widths
+  function changePizzaSizes(size) {
+
       switch(size) {
         case "1":
           return 0.25;
@@ -440,20 +450,13 @@ var resizePizzas = function(size) {
         default:
           console.log("bug in sizeSwitcher");
       }
-    }
 
-    var newSize = sizeSwitcher(size);
-    var dx = (newSize - oldSize) * windowWidth;
+    //refactored so that we don't use the FSL problem
+    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
 
-    return dx;
-  }
+    for (var i = 0; i < randomPizzas.length; i++) {
+      randomPizzas[i].style.width = newwidth + '%';
 
-  // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
   }
 
@@ -503,8 +506,13 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
+  var pizzaScrollTop = document.body.scrollTop;
+  var phase;
+
+  //refactored scrollTop into pizzaScrollTop, so that it doesn't have to keep using the FSL scrollTop
+  //moved phase variable declaration out of for loop, so it doesn't re allocate it to memory
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    phase = Math.sin((pizzaScrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
