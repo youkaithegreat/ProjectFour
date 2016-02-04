@@ -8,7 +8,9 @@ This project is to showcase website performance optimization techniques to achie
 2. Live link is at www.kevintyang.com/ProjectFour
 
 ## Grunt dist
-1. A seperate version is in "dist", but this was added after project was complete 
+1. A seperate version is in "dist", but this was added after project was complete
+2. If using grunt, run the gulpfile.js
+3. Only noticeable difference with /dist/ is minified HTML/CSS. 
 
 ####Part 1: Optimize PageSpeed Insights score for index.html
 index.html score 94/100 mobile, 93/100 desktop.
