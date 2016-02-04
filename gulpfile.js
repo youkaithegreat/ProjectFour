@@ -39,9 +39,9 @@ gulp.task('html', function(){
 });
 
 gulp.task('copy', function(){
-    gulp.src('img/*.jpg')
+    gulp.src('img/*.{png, gif, jpg}')
         .pipe(gulp.dest('./dist/img/'));
-    gulp.src('views/images/*.jpg')
+    gulp.src('views/images/*.{png, gif, jpg}')
       .pipe(gulp.dest('./dist/views/images/'));
 });
 

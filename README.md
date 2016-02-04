@@ -10,9 +10,9 @@ This project is to showcase website performance optimization techniques to achie
 ## Grunt dist
 1. A seperate version is in "dist", but this was added after project was complete
 2. If using grunt, run the gulpfile.js
-3. Only noticeable difference with /dist/ is minified HTML/CSS. 
+3. Only noticeable difference with /dist/ is minified HTML/CSS.
 
-####Part 1: Optimize PageSpeed Insights score for index.html
+#### Part 1: Optimize PageSpeed Insights score for index.html
 index.html score 94/100 mobile, 93/100 desktop.
 1. inlined render blocking CSS
 2. async JavaScript
@@ -20,7 +20,7 @@ index.html score 94/100 mobile, 93/100 desktop.
 4. optimized images
 
 
-####Part 2: Optimize Frames per Second in pizza.html
+#### Part 2: Optimize Frames per Second in pizza.html
 pizza.html is now optimized for 60 fps by refactoring FSL
 1. refactored how the pizza resizing works
 2. made scroll top run only once

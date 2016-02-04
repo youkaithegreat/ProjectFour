@@ -521,7 +521,7 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
-//the original 200 was too many pizzas, utilized viewport height and divide by 25 
+//the original 200 was too many pizzas, utilized viewport height and divide by 25
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
