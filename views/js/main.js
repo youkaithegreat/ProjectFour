@@ -438,7 +438,7 @@ var resizePizzas = function(size) {
       }
 
     //refactored so that we don't use the FSL problem
-    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+    var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
     for (var i = 0; i < randomPizzas.length; i++) {
       randomPizzas[i].style.width = newWidth + '%';
@@ -492,15 +492,19 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
   var pizzaScrollTop = document.body.scrollTop;
-  var phase;
+  var phase = [];
 
+  for (var k = 0; k < 5; k++){
+
+    phase.push(Math.sin((pizzaScrollTop / 1250 + k) *100));
+  }
   //refactored scrollTop into pizzaScrollTop, so that it doesn't have to keep using the FSL scrollTop
   //moved phase variable declaration out of for loop, so it doesn't re allocate it to memory
   for (var i = 0; i < items.length; i++) {
-    phase = Math.sin((pizzaScrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+
+    items[i].style.left = items[i].basicLeft + 100 * phase[i%5] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -517,10 +521,12 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+//the original 200 was too many pizzas, utilized viewport height and divide by 25 
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var viewportHeight = window.innerHeight;
+  for (var i = 0; i < viewportHeight/25; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
